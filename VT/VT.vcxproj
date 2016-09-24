@@ -42,6 +42,7 @@
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
     <RootNamespace>VT</RootNamespace>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,6 +125,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+    <EnableInf2cat>false</EnableInf2cat>
+    <OutDir>$(SolutionDir)$(Platform)\$(ConfigurationName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
@@ -148,6 +151,14 @@
       <TreatLinkerWarningAsErrors>false</TreatLinkerWarningAsErrors>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <TreatWarningAsError>false</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <TreatLinkerWarningAsErrors>false</TreatLinkerWarningAsErrors>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <Inf Include="VT.inf" />
   </ItemGroup>
@@ -155,15 +166,25 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="exitHandle.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="VMCS.cpp" />
     <ClCompile Include="vt.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="class.h" />
+    <ClInclude Include="exitHandle.h" />
     <ClInclude Include="vt.h" />
+    <ClInclude Include="class.h" />
+    <ClInclude Include="commom.h" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="asm.asm" />
+    <MASM Include="fuck.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <NoLogo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</NoLogo>
+      <TreatWarningsAsErrors Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningsAsErrors>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </MASM>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

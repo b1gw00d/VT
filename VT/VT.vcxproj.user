@@ -3,4 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TestCertificate>CN=Y.com | 69A331BC1EB68BA06A546787B9FEB42ABF83CB75</TestCertificate>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TestCertificate>CN=Y.com | 69A331BC1EB68BA06A546787B9FEB42ABF83CB75</TestCertificate>
+  </PropertyGroup>
 </Project>

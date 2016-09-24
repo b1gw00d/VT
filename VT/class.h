@@ -1,4 +1,4 @@
-#include<ntddk.h>
+
 class CPUaddress
 {
 public:
@@ -9,9 +9,6 @@ public:
 	PHYSICAL_ADDRESS phVMXCS;
 	PHYSICAL_ADDRESS phStack;
 };
-
-
-
 
 #pragma pack(1)
 typedef struct 
@@ -141,8 +138,6 @@ typedef struct
 	SegmentPort ldtr;
 	SegmentPort tr;
 
-
-
 }Segment, *PSegment;
 
 typedef struct 
@@ -158,3 +153,65 @@ typedef struct
 	USHORT Limit;
 	PVOID Base;
 }IDTR;
+
+
+
+
+typedef struct
+{
+	ULONGLONG rax;
+	ULONGLONG rcx;
+	ULONGLONG rdx;
+	ULONGLONG rbx;
+	ULONGLONG rbp;
+	ULONGLONG rsi;
+	ULONGLONG rdi;
+	ULONGLONG r8;
+	ULONGLONG r9;
+	ULONGLONG r10;
+	ULONGLONG r11;
+	ULONGLONG r12;
+	ULONGLONG r13;
+	ULONGLONG r14;
+	ULONGLONG r15;
+	ULONGLONG Number;
+	ULONGLONG rip;
+	ULONGLONG rsp;
+	ULONGLONG instructionLen;
+	ULONGLONG ExitReason;
+	ULONGLONG exitError;
+}Register, *PRegister;
+
+
+typedef struct
+{
+	USHORT limit0;
+	USHORT base0;
+	UCHAR base1;
+	UCHAR attr0;
+	UCHAR limit1attr1;
+	UCHAR base2;
+} SEGMENT_DESCRIPTOR, *PSEGMENT_DESCRIPTOR;
+
+
+typedef struct 
+{
+	unsigned Vector : 8;
+	unsigned InterruptionType : 3;
+	unsigned ErrorCodeValid : 1;
+	unsigned NMIUnblocking : 1;
+	unsigned Reserved : 18;
+	unsigned Valid : 1;
+} INTERRUPT_INFO_FIELD, *PINTERRUPT_INFO_FIELD;
+
+
+
+typedef struct 
+{
+	unsigned Vector : 8;
+	unsigned InterruptionType : 3;
+	unsigned DeliverErrorCode : 1;
+	unsigned Reserved : 19;
+	unsigned Valid : 1;
+} INTERRUPT_INJECT_INFO_FIELD, *PINTERRUPT_INJECT_INFO_FIELD;
+#pragma pack()

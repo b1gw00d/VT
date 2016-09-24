@@ -30,17 +30,32 @@
     <ClCompile Include="vt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VMCS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exitHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="vt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="class.h">
+    <ClInclude Include="exitHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="asm.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="fuck.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
